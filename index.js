@@ -1,8 +1,3 @@
-const fetchService = require('./services/fetchService')
-const productUrl = 'https://www.philips.co.in/c-p/GC2147_30/easyspeed-plus-steam-iron';
-const brandName = 'philips';
+const fileService = require('./services/fileReader')
 
-(async function () {
-    let feature = await fetchService.fetchFeature(productUrl, brandName)
-    console.log(feature)
-})()
+let feature = fileService.fileReader('./data/product.csv').then(console.log).catch(console.log)

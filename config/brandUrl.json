@@ -1,0 +1,8 @@
+{
+  "agro": {
+    "selector": "#sm2_product_features >  ul > li"
+  },
+  "philips": {
+    "selector": ".p-info-wrapper > div > div > ul > li"
+  }
+}

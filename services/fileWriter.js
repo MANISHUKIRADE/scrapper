@@ -1,9 +1,6 @@
 const fs = require('fs');
 const csvWriter = require('csv-write-stream');
-const writer = csvWriter(); //Instantiate var
-const urlHeader = 'product url';
-const brandNameHeader = 'Brand Name';
-const features = 'features'
+const writer = csvWriter();
 var csvFilename = `./data/result-${Date.now()}.csv`;
 
 writer.pipe(fs.createWriteStream(csvFilename))

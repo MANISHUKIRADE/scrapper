@@ -1,24 +1,16 @@
 const csv = require('csv-parser')
 const fs = require('fs')
-const fetchService = require('./fetchService')
-
+const { productCache } = require('./cacheManager')
 let currentPointer = 0
-const urlHeader = 'product url';
-const brandNameHeader = 'Brand Name';
-let results = []
 let stream = fs.createReadStream('./data/product.csv');
 stream
     .pipe(csv())
     .on('data', (data) => {
+        stream.pause();
         currentPointer++;
-        results.push(data)
+        productCache.set(currentPointer, data);
+        stream.resume();
     })
-    .on('end', async () => {
+    .on('end', () => {
         console.log(`number of data :${currentPointer} parsed`)
-        for (let index = 0; index < results.length; index++) {
-            let data = results[index]
-            let feature = await fetchService.fetchFeature(data[urlHeader], data[brandNameHeader])
-            console.log(feature)
-        }
-
     });

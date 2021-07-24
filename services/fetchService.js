@@ -1,6 +1,6 @@
 const puppeteer = require('puppeteer');
 const _ = require('lodash')
-const brandSetting = require('./config/brandUrl.json')
+const brandSetting = require('./../config/brandUrl.json')
 module.exports = {
     fetchFeature: async function (productUrl, brandName) {
 

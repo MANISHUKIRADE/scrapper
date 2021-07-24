@@ -1,4 +1,4 @@
-const fetchService = require('./fetchFeature')
+const fetchService = require('./services/fetchService')
 const productUrl = 'https://www.philips.co.in/c-p/GC2147_30/easyspeed-plus-steam-iron';
 const brandName = 'philips';
 

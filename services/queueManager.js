@@ -23,7 +23,7 @@ jobQueue.on('completed', async function (job, result) {
 
 jobQueue.on('failed', async (job, err) => {
     console.log(err)
-
+    jobQueue.getJobCounts().then(res => console.log('Job Count:\n', res));
 })
 jobQueue.on('drained', async function () {
     let timeRequired = Date.now() - startTime

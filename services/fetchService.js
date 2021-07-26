@@ -14,7 +14,7 @@ module.exports = async function (job) {
             return features;
         } catch (err) {
             console.log('err', err)
-            return err
+            throw err
         }
     }
     return 'Brand Name Not Found in setting'

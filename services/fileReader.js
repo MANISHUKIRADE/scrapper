@@ -1,6 +1,7 @@
 const csv = require('csv-parser')
 const fs = require('fs')
 const { productCache } = require('./cacheManager')
+const brandNameHeader = 'Brand Name';
 
 module.exports = {
     fileReader: function (filename) {
@@ -12,9 +13,9 @@ module.exports = {
                 .on('data', (data) => {
                     stream.pause();
                     currentPointer++;
-                    console.log(data['Brand Name'])
-                    data['Brand Name'] = data['Brand Name'].toLowerCase()
-                    data['Brand Name'] = data['Brand Name'].trim()
+                    console.log(data[brandNameHeader])
+                    data[brandNameHeader] = data[brandNameHeader].toLowerCase()
+                    data[brandNameHeader] = data[brandNameHeader].trim()
                     productCache.set(currentPointer, data);
                     stream.resume();
                 })

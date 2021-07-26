@@ -11,6 +11,7 @@ productCache.on('set', async function (key, value) {
     let feature = await fetchService.fetchFeature(value[urlHeader], value[brandNameHeader])
     value[features] = feature;
     resultCache.set(key, value)
+    productCache.del(key)
     return
 })
 

@@ -17,7 +17,7 @@ jobQueue.on('completed', async function (job, result) {
     data[brandNameHeader] = job.data.brandName
     data[featureHeader] = result
     await writer.writeCsv(data)
-
+    jobQueue.getJobCounts().then(res => console.log('Job Count:\n', res));
 })
 
 

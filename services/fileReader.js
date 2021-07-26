@@ -1,7 +1,8 @@
 const csv = require('csv-parser')
 const fs = require('fs')
-const { productCache } = require('./cacheManager')
+const jobQueue = require('./queueManager')
 const brandNameHeader = 'Brand Name';
+const productUrlHeader = 'product url';
 
 module.exports = {
     fileReader: function (filename) {
@@ -10,13 +11,17 @@ module.exports = {
             let stream = fs.createReadStream(filename);
             stream
                 .pipe(csv())
-                .on('data', (data) => {
+                .on('data', async (data) => {
                     stream.pause();
                     currentPointer++;
-                    console.log(data[brandNameHeader])
                     data[brandNameHeader] = data[brandNameHeader].toLowerCase()
                     data[brandNameHeader] = data[brandNameHeader].trim()
-                    productCache.set(currentPointer, data);
+                    let job = {
+                        brandName: data[brandNameHeader],
+                        productUrl: data[productUrlHeader]
+
+                    }
+                    await jobQueue.add(job)
                     stream.resume();
                 })
                 .on('end', () => {

@@ -12,6 +12,9 @@ module.exports = {
                 .on('data', (data) => {
                     stream.pause();
                     currentPointer++;
+                    console.log(data['Brand Name'])
+                    data['Brand Name'] = data['Brand Name'].toLowerCase()
+                    data['Brand Name'] = data['Brand Name'].trim()
                     productCache.set(currentPointer, data);
                     stream.resume();
                 })

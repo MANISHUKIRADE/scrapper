@@ -1,0 +1,5 @@
+ redis:
+    image: 'redis:4-alpine'
+    command: redis-server --requirepass "manish9797"
+    ports:
+      - '6379:6379'
